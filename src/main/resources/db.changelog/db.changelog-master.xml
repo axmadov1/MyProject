@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="axmadov">
+        <createTable tableName="employee">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="axmadov">
+        <createTable tableName="vehicle">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="make" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="auto_number" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="driver_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="axmadov">
+        <sql>
+            ALTER TABLE vehicle
+                ADD constraint chk_auto_number_format
+                    CHECK (auto_number ~ '(?:01|10|20|25|30|40|50|60|70|75|80|85|90|95)\|[0-9]{3}[A-Z]{3}')
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="axmadov">
+        <insert tableName="employee">
+            <column name="id" value="00000000-0000-0000-0000-000000000001"/>
+            <column name="full_name" value="Admin User"/>
+            <column name="email" value="admin@example.com"/>
+            <column name="password" value="adminpassword"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="id" value="00000000-0000-0000-0000-000000000002"/>
+            <column name="full_name" value="Regular User"/>
+            <column name="email" value="user@example.com"/>
+            <column name="password" value="userpassword"/>
+            <column name="role" value="USER"/>
+        </insert>
+        <insert tableName="vehicle">
+            <column name="id" value="00000000-0000-0000-0000-000000000003"/>
+            <column name="make" value="Toyota"/>
+            <column name="model" value="Corolla"/>
+            <column name="year" value="2015"/>
+            <column name="auto_number" value="01|123ABC"/>
+            <column name="driver_id" value="00000000-0000-0000-0000-000000000001"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="5" author="axmadov">
+        <createTable tableName="trip">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="from_location" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_location" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="auto_number" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purpose" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fuel_cost" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="driver_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="worker_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="axmadov">
+        <insert tableName="trip">
+            <column name="id" value="5e840d6a-febb-4f3b-9078-2c6ed1d68f11"/>
+            <column name="from_location" value="Office"/>
+            <column name="to_location" value="Client Site"/>
+            <column name="start_time" value="2024-07-13 09:00:00"/>
+            <column name="end_time" value="2024-07-13 09:30:00"/>
+            <column name="auto_number" value="01|123ABC"/>
+            <column name="purpose" value="Client Meeting"/>
+            <column name="fuel_cost" value="50.00"/>
+            <column name="driver_id" value="3e840d6a-febb-4f3b-9078-2c6ed1d68f09"/>
+            <column name="worker_id" value="2e840d6a-febb-4f3b-9078-2c6ed1d68f08"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
