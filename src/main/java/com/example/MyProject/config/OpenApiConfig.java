@@ -25,7 +25,6 @@ public class OpenApiConfig {
                 .addSecurityItem(new SecurityRequirement().addList("bearer-key"));
     }
 
-
     @Bean
     public GroupedOpenApi adminApi() {
         return GroupedOpenApi.builder()

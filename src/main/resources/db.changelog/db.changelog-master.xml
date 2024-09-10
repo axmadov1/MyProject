@@ -7,7 +7,7 @@
 
     <changeSet id="1" author="axmadov">
         <createTable tableName="employee">
-            <column name="id" type="uuid">
+            <column name="id" type="BINARY(16)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="full_name" type="varchar(255)">
