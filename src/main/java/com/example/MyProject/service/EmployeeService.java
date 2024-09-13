@@ -40,7 +40,7 @@ public class EmployeeService {
             employee.setName(employeeDetails.getName());
             employee.setEmail(employeeDetails.getEmail());
             employee.setPassword(passwordEncoder.encode(employeeDetails.getPassword()));
-            employee.setRoles(employeeDetails.getRoles());
+            employee.setRole(employeeDetails.getRole());
             return employeeRepository.save(employee);
         }
         return null;

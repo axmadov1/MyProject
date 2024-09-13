@@ -8,11 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -22,13 +22,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
         if (employee == null) {
             throw new UsernameNotFoundException("Employee not found with email: " + email);
         }
-
-        return new org.springframework.security.core.userdetails.User(
-                employee.getEmail(),
-                employee.getPassword(),
-                employee.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                        .collect(Collectors.toList())
-        );
+        return new org.springframework.security.core.userdetails.User(employee.getEmail(), employee.getPassword(), new ArrayList<>());
     }
 }
+
