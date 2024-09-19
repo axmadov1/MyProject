@@ -16,6 +16,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false, nullable = false)
     private UUID id;
     @Column(name = "make", nullable = false)
     private String make;

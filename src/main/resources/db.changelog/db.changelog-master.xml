@@ -7,7 +7,7 @@
 
     <changeSet id="1" author="axmadov">
         <createTable tableName="employee">
-            <column name="id" type="BINARY(16)">
+            <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="full_name" type="varchar(255)">
@@ -27,7 +27,7 @@
 
     <changeSet id="2" author="axmadov">
         <createTable tableName="vehicle">
-            <column name="id" type="uuid">
+            <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="make" type="varchar(255)">
@@ -59,31 +59,39 @@
     <changeSet id="4" author="axmadov">
         <insert tableName="employee">
             <column name="id" value="00000000-0000-0000-0000-000000000001"/>
-            <column name="full_name" value="Admin User"/>
+            <column name="full_name" value="Admin"/>
             <column name="email" value="admin@example.com"/>
-            <column name="password" value="adminpassword"/>
+            <column name="password" value="$2a$10$sSrU2.OE64XOaHulEUnQNeQAlIEVW6TpFJy7n9sqzB8809/RGu2BS"/>
             <column name="role" value="ADMIN"/>
         </insert>
         <insert tableName="employee">
-            <column name="id" value="00000000-0000-0000-0000-000000000002"/>
-            <column name="full_name" value="Regular User"/>
-            <column name="email" value="user@example.com"/>
-            <column name="password" value="userpassword"/>
-            <column name="role" value="USER"/>
+            <column name="id" value="2e840d6a-febb-4f3b-9078-2c6ed1d68f08"/>
+            <column name="full_name" value="Worker 1"/>
+            <column name="email" value="worker1@example.com"/>
+            <column name="password" value="$2a$10$ttoF/ksGT/KamHAF0VN2LuhYV.5t0LwqjdOLE7Wcom4vVU1jJnCpe"/>
+            <column name="role" value="WORKER"/>
         </insert>
+        <insert tableName="employee">
+            <column name="id" value="3e840d6a-febb-4f3b-9078-2c6ed1d68f09"/>
+            <column name="full_name" value="Driver 1"/>
+            <column name="email" value="driver1@example.com"/>
+            <column name="password" value="$2a$10$QEVZhX8biTigsXEyVF9OXOq576W4AfGhrQQlU/u3.6s2ANjGBbMMW"/>
+            <column name="role" value="DRIVER"/>
+        </insert>
+
         <insert tableName="vehicle">
-            <column name="id" value="00000000-0000-0000-0000-000000000003"/>
+            <column name="id" value="00000000-0000-0000-0000-000000000002"/>
             <column name="make" value="Toyota"/>
             <column name="model" value="Corolla"/>
             <column name="year" value="2015"/>
             <column name="auto_number" value="01|123ABC"/>
-            <column name="driver_id" value="00000000-0000-0000-0000-000000000001"/>
+            <column name="driver_id" value="3e840d6a-febb-4f3b-9078-2c6ed1d68f09"/>
         </insert>
     </changeSet>
 
     <changeSet id="5" author="axmadov">
         <createTable tableName="trip">
-            <column name="id" type="uuid">
+            <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="from_location" type="varchar(255)">

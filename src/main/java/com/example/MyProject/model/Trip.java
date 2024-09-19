@@ -18,6 +18,7 @@ public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false, nullable = false)
     private UUID id;
     @Column(name = "from_location", nullable = false)
     private String fromLocation;
