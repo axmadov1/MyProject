@@ -1,0 +1,3 @@
+### Admin
+GET http://localhost:8080/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg0NDEzOSwiZXhwIjoxNzI2ODgwMTM5fQ.SGJnAicwLuxN6zx79yGLsTDfcFQjBY9doNkCTw6_eCg
