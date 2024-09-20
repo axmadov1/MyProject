@@ -1,3 +1,35 @@
 ### Admin
 GET http://localhost:8080/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg0NDEzOSwiZXhwIjoxNzI2ODgwMTM5fQ.SGJnAicwLuxN6zx79yGLsTDfcFQjBY9doNkCTw6_eCg
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
+
+###
+GET http://localhost:8080/api/users/35f38d87-0ac6-409a-a2bd-c2f22b0b8006
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
+
+###
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
+
+{
+  "name": "Oxun Sharipov",
+  "email": "oxun@example.com",
+  "password": "Oxun0422",
+  "role" : "DRIVER"
+}
+
+###
+PUT http://localhost:8080/api/users/35f38d87-0ac6-409a-a2bd-c2f22b0b8006
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
+
+{
+  "name": "Nodir",
+  "email": "nodir1@example.com",
+  "password": "Nodir1",
+  "role" : "WORKER"
+}
+
+###
+DELETE http://localhost:8080/api/users/61f3cf21-3e44-4826-9763-fd235cd4a3a8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
