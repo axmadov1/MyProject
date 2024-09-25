@@ -1,8 +1,26 @@
-### Login
+### Login Admin
 POST localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
   "email": "admin@example.com",
   "password": "ac2178015"
+}
+
+### Login Driver
+POST localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "driver1@example.com",
+  "password": "driver1"
+}
+
+### Login Worker
+POST localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email" : "worker1@example.com",
+  "password" : "worker1"
 }

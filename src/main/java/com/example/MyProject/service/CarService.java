@@ -42,4 +42,8 @@ public class CarService {
     public void deleteCar(UUID id) {
         carRepository.deleteById(id);
     }
+
+    public List<Car> getCarByDriverId(String userId) {
+        return carRepository.getCarByDriverId(userId);
+    }
 }

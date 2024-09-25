@@ -4,6 +4,8 @@ import com.example.MyProject.model.Trip;
 import com.example.MyProject.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +18,27 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('WORKER') or hasRole('DRIVER')")
     @GetMapping
     public List<Trip> getAllTrips() {
-        return tripService.getAllTrips();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (isAdmin) return tripService.getAllTrips();
+
+
+        String userId = authentication.getName();
+        boolean isDriver = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_DRIVER"));
+        if (isDriver) return tripService.getTripsByDriverId(userId);
+
+        boolean isWorker = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_WORKER"));
+        if (isWorker) return tripService.getTripsByWorkerId(userId);
+
+        return List.of();
+
     }
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('WORKER') or hasRole('DRIVER')")
@@ -34,6 +53,7 @@ public class TripController {
         return tripService.createTrip(trip);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('DRIVER')")
     @PutMapping("/{id}")
     public Trip updateTrip(@PathVariable UUID id, @RequestBody Trip tripDetails) {
         return tripService.updateTrip(id, tripDetails);

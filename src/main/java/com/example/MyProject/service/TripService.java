@@ -46,4 +46,12 @@ public class TripService {
     public void deleteTrip(UUID id) {
         tripRepository.deleteById(id);
     }
+
+    public List<Trip> getTripsByDriverId(String userId) {
+        return tripRepository.findByDriverId(userId);
+    }
+
+    public List<Trip> getTripsByWorkerId(String userId) {
+        return tripRepository.findByWorkerId(userId);
+    }
 }
