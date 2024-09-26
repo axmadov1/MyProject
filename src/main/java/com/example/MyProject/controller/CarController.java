@@ -1,5 +1,5 @@
 package com.example.MyProject.controller;
-
+import com.example.MyProject.dto.CarDTO;
 import com.example.MyProject.model.Car;
 import com.example.MyProject.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -43,14 +42,20 @@ public class CarController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public Car createCar(@RequestBody Car car) {
-        return carService.createCar(car);
+    public Car createCar(@RequestBody CarDTO carDTO) {
+        return carService.createCar(carDTO);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public Car updateCar(@PathVariable UUID id, @RequestBody Car carDetails) {
         return carService.updateCar(id, carDetails);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{carId}/assign-driver")
+    public Car assignDriverToCar(@PathVariable UUID carId, @RequestBody UUID driverId){
+        return carService.assignDriverToCar(carId, driverId);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

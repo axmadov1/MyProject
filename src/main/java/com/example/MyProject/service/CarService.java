@@ -1,7 +1,10 @@
 package com.example.MyProject.service;
 
+import com.example.MyProject.dto.CarDTO;
 import com.example.MyProject.model.Car;
+import com.example.MyProject.model.Employee;
 import com.example.MyProject.repository.CarRepository;
+import com.example.MyProject.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,9 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
@@ -21,8 +27,18 @@ public class CarService {
         return carRepository.findById(id).orElse(null);
     }
 
-    public Car createCar(Car car) {
+    public Car createCar(CarDTO carDTO) {
+        Employee driver = employeeRepository.findById(carDTO.getDriverId())
+                .orElseThrow(() -> new RuntimeException("Driver not found"));
+
+        Car car = new Car();
         car.setId(UUID.randomUUID());
+        car.setMake(carDTO.getMake());
+        car.setModel(carDTO.getModel());
+        car.setYear(carDTO.getYear());
+        car.setAutoNumber(carDTO.getAutoNumber());
+        car.setDriver(driver);
+
         return carRepository.save(car);
     }
 
@@ -45,5 +61,14 @@ public class CarService {
 
     public List<Car> getCarByDriverId(String userId) {
         return carRepository.getCarByDriverId(userId);
+    }
+
+    public Car assignDriverToCar(UUID carId, UUID driverId) {
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new RuntimeException("Car not found"));
+        Employee driver = employeeRepository.findById(driverId)
+                .orElseThrow(() -> new RuntimeException("Driver not found"));
+        car.setDriver(driver);
+        return carRepository.save(car);
     }
 }

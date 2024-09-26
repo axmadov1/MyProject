@@ -9,7 +9,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsI
 ###
 POST http://localhost:8080/api/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNjg1NDIwOSwiZXhwIjoxNzI2ODkwMjA5fQ.4m8EyztH2nQ7aU7tmMDIBsXwxHm6k3P7V0yBO9TAn40
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTcyNzI1NjE1MCwiZXhwIjoxNzI3MjkyMTUwfQ.8nWOrAw0VdqtV2esaGafFU97WRa8jreLNHtHhiVbP0I
 
 {
   "name": "Oxun Sharipov",
