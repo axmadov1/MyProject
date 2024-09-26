@@ -15,4 +15,6 @@ public interface CarRepository extends JpaRepository<Car, UUID> {
     @Query(nativeQuery = true, value = "select * from vehicle where driver_id = :driver_id")
     List<Car> getCarByDriverId(@Param("driver_id") String userId);
 
+    @Query(nativeQuery = true, value = "select count()>0 from vehicle where auto_number = :autoNumber")
+    boolean existsByAutoNumber(@Param("autonumber") String autoNumber);
 }

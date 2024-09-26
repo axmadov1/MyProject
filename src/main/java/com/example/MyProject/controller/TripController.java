@@ -1,5 +1,6 @@
 package com.example.MyProject.controller;
 
+import com.example.MyProject.dto.TripDTO;
 import com.example.MyProject.model.Trip;
 import com.example.MyProject.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,8 @@ public class TripController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('DRIVER')")
     @PostMapping
-    public Trip createTrip(@RequestBody Trip trip) {
-        return tripService.createTrip(trip);
+    public Trip createTrip(@RequestBody TripDTO tripDTO) {
+        return tripService.createTrip(tripDTO);
     }
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('DRIVER')")

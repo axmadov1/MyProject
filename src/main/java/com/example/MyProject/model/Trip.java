@@ -28,6 +28,8 @@ public class Trip {
     private LocalDateTime startTime;
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
+    @Column(name = "auto_number", nullable = false)
+    private String autoNumber;
     @Column(name = "purpose", nullable = false)
     private String purpose;
     @Column(name = "fuel_cost", nullable = false)
