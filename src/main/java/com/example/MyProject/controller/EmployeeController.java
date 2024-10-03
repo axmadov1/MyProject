@@ -45,4 +45,18 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable UUID id) {
         employeeService.deleteEmployee(id);
     }
+
+    /// All Workers
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/w")
+    public List<Employee> getAllWorkers(){
+        return employeeService.getAllWorkers();
+    }
+
+    /// All Drivers
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/d")
+    public List<Employee> getAllDrivers(){
+        return employeeService.getAllDrivers();
+    }
 }

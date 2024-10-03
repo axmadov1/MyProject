@@ -49,4 +49,12 @@ public class EmployeeService {
     public void deleteEmployee(UUID id){
         employeeRepository.deleteById(id);
     }
+
+    public List<Employee> getAllWorkers() {
+        return employeeRepository.findAllWorkers();
+    }
+
+    public List<Employee> getAllDrivers(){
+        return employeeRepository.findAllDrivers();
+    }
 }
