@@ -17,4 +17,8 @@ public interface TripRepository extends JpaRepository<Trip, UUID> {
 
     @Query(nativeQuery = true, value = "select * from trip where worker_id = :worker_id")
     List<Trip> findByWorkerId(@Param("worker_id") String userId);
+
+    @Query(nativeQuery = true, value = "SELECT t.driver_id, SUM(t.fuel_cost) as totalFuelCost\n" +
+            "FROM Trip t GROUP BY t.driver_id, t.driver_id ORDER BY totalFuelCost DESC")
+    List<Object[]> findTopDriversByFuelCost();
 }

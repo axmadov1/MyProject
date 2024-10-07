@@ -87,4 +87,8 @@ public class TripService {
     public List<Trip> getTripsByWorkerId(String userId) {
         return tripRepository.findByWorkerId(userId);
     }
+
+    public List<Object[]> getTopDriversByFuelCost() {
+        return tripRepository.findTopDriversByFuelCost();
+    }
 }

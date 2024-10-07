@@ -65,4 +65,11 @@ public class TripController {
     public void deleteTrip(@PathVariable UUID id) {
         tripService.deleteTrip(id);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/top-drivers")
+    public List<Object[]> getTopDriversByFuelCost(){
+        return tripService.getTopDriversByFuelCost();
+    }
+
 }

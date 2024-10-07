@@ -21,8 +21,12 @@ public class OpenApiConfig {
                         .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3."))
                 .components(new Components()
                         .addSecuritySchemes("bearer-key",
-                                new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
-                .addSecurityItem(new SecurityRequirement().addList("bearer-key"));
+                                new SecurityScheme()
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")))
+                .addSecurityItem(new SecurityRequirement()
+                        .addList("bearer-key"));
     }
 
     @Bean
